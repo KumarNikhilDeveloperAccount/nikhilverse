@@ -1,4 +1,4 @@
-# Kumar Nikhil Digital Identity Platform
+# NikhilVerse - All about Kumar Nikhil
 
 Welcome to the AI-native professional platform for Kumar Nikhil, Infrastructure Services Analyst III at DXC Technology. This platform natively integrates advanced enterprise IT concepts (ITSM, Change Management, Windows Server, VMware) with a state-of-the-art multipage web experience.
 

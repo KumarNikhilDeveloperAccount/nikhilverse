@@ -8,7 +8,7 @@ import { Footer } from "@/components/layout/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Kumar Nikhil | Digital Identity Platform",
+  title: "NikhilVerse - All about Kumar Nikhil",
   description: "Living AI-native professional platform for Kumar Nikhil, Infrastructure Services Analyst.",
 };
 
