@@ -1,13 +1,12 @@
 "use client";
 
-import { useChat } from '@ai-sdk/react';
 import { Bot, Send, User, Mic } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 export default function AIAssistantPage() {
-  // @ts-ignore
-  const { messages, append, isLoading } = useChat();
+  const [messages, setMessages] = useState<any[]>([]);
   const [inputLocal, setInputLocal] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -16,13 +15,11 @@ export default function AIAssistantPage() {
 
   const [isListening, setIsListening] = useState(false);
 
-  // Simple Web Speech API Implementation for demonstration
   const handleVoice = () => {
     if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
       alert("Voice recognition is not supported in this browser.");
       return;
     }
-    
     // @ts-ignore
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
@@ -30,16 +27,60 @@ export default function AIAssistantPage() {
     recognition.interimResults = false;
 
     recognition.onstart = () => setIsListening(true);
-    
     recognition.onresult = (event: any) => {
       const transcript = event.results[0][0].transcript;
       setInputLocal(prev => prev + (prev ? " " : "") + transcript);
     };
-
     recognition.onerror = () => setIsListening(false);
     recognition.onend = () => setIsListening(false);
-
     recognition.start();
+  };
+
+  const sendMessage = async (content: string) => {
+    if (!content.trim() || isLoading) return;
+    
+    setInputLocal("");
+    const newMessages = [...messages, { id: Date.now().toString(), role: "user", content }];
+    setMessages(newMessages);
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: newMessages })
+      });
+
+      if (!response.ok) {
+        setMessages(prev => [...prev, { id: Date.now().toString(), role: "assistant", content: "Error connecting to AI (Check API Keys in .env file or Vercel)." }]);
+        setIsLoading(false);
+        return;
+      }
+
+      const reader = response.body?.getReader();
+      if (!reader) throw new Error("No reader");
+      
+      const decoder = new TextDecoder();
+      let aiMessage = "";
+      
+      setMessages([...newMessages, { id: (Date.now() + 1).toString(), role: "assistant", content: "" }]);
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        aiMessage += decoder.decode(value, { stream: true });
+        
+        setMessages(prev => {
+          const updated = [...prev];
+          updated[updated.length - 1].content = aiMessage;
+          return updated;
+        });
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -58,8 +99,8 @@ export default function AIAssistantPage() {
                <Bot className="w-16 h-16 opacity-20" />
                <p>I'm trained on Nikhil's career, ITSM frameworks, and infrastructure architecture. How can I help?</p>
                <div className="flex flex-wrap justify-center gap-2 mt-4">
-                 <button onClick={() => append({role: 'user', content: "What did he do at DXC?"})} className="text-xs bg-muted px-3 py-1.5 rounded-full hover:bg-primary/10 hover:text-primary transition-colors border border-border">What did he do at DXC?</button>
-                 <button onClick={() => append({role: 'user', content: "Explain Change Management like I'm 5"})} className="text-xs bg-muted px-3 py-1.5 rounded-full hover:bg-primary/10 hover:text-primary transition-colors border border-border">Explain Change Management like I'm 5</button>
+                 <button onClick={() => sendMessage("What did he do at DXC?")} className="text-xs bg-muted px-3 py-1.5 rounded-full hover:bg-primary/10 hover:text-primary transition-colors border border-border">What did he do at DXC?</button>
+                 <button onClick={() => sendMessage("Explain Change Management like I'm 5")} className="text-xs bg-muted px-3 py-1.5 rounded-full hover:bg-primary/10 hover:text-primary transition-colors border border-border">Explain Change Management like I'm 5</button>
                </div>
             </div>
           )}
@@ -77,8 +118,8 @@ export default function AIAssistantPage() {
               </div>
             </div>
           ))}
-          {isLoading && (
-            <div className="flex gap-2 mr-auto max-w-[85%] items-end">
+          {isLoading && messages[messages.length - 1]?.role === "user" && (
+            <div className="flex gap-2 mr-auto max-w-[85%] items-end mt-4">
                <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center"><Bot className="w-3 h-3" /></div>
                <div className="px-5 py-3 rounded-2xl bg-muted rounded-tl-none border border-border flex gap-1 pt-4 pb-4">
                  <div className="w-2 h-2 rounded-full bg-foreground/30 animate-bounce" />
@@ -90,7 +131,7 @@ export default function AIAssistantPage() {
           <div ref={messagesEndRef} />
         </div>
 
-        <form onSubmit={(e) => { e.preventDefault(); if(inputLocal.trim() && !isLoading) { append({role: 'user', content: inputLocal}); setInputLocal(""); } }} className="p-4 border-t border-border bg-background flex gap-2">
+        <form onSubmit={(e) => { e.preventDefault(); sendMessage(inputLocal); }} className="p-4 border-t border-border bg-background flex gap-2">
           <button 
             type="button" 
             onClick={handleVoice}
