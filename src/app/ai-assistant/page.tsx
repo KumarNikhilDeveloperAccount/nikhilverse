@@ -6,7 +6,8 @@ import { useState, useRef, useEffect } from 'react';
 
 export default function AIAssistantPage() {
   // @ts-ignore
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat();
+  const { messages, append, isLoading } = useChat();
+  const [inputLocal, setInputLocal] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -32,8 +33,7 @@ export default function AIAssistantPage() {
     
     recognition.onresult = (event: any) => {
       const transcript = event.results[0][0].transcript;
-      const fakeEvent = { target: { value: input + (input ? " " : "") + transcript } } as any;
-      handleInputChange(fakeEvent);
+      setInputLocal(prev => prev + (prev ? " " : "") + transcript);
     };
 
     recognition.onerror = () => setIsListening(false);
@@ -46,7 +46,7 @@ export default function AIAssistantPage() {
     <div className="container max-w-4xl mx-auto py-12 px-4 h-[calc(100vh-8rem)] flex flex-col animate-in fade-in duration-700">
       <div className="mb-6 text-center shrink-0">
         <h1 className="text-4xl font-extrabold mb-2 flex items-center justify-center gap-3">
-          <Bot className="w-8 h-8 text-primary" /> Nexus AI
+          <Bot className="w-8 h-8 text-primary" /> NikVerse AI
         </h1>
         <p className="text-muted-foreground">Ask anything about Kumar Nikhil's experience, skills, or IT infrastructure.</p>
       </div>
@@ -58,8 +58,8 @@ export default function AIAssistantPage() {
                <Bot className="w-16 h-16 opacity-20" />
                <p>I'm trained on Nikhil's career, ITSM frameworks, and infrastructure architecture. How can I help?</p>
                <div className="flex flex-wrap justify-center gap-2 mt-4">
-                 <button onClick={() => handleInputChange({target: {value: "What did he do at DXC?"}} as any)} className="text-xs bg-muted px-3 py-1.5 rounded-full hover:bg-primary/10 hover:text-primary transition-colors border border-border">What did he do at DXC?</button>
-                 <button onClick={() => handleInputChange({target: {value: "Explain Change Management like I'm 5"}} as any)} className="text-xs bg-muted px-3 py-1.5 rounded-full hover:bg-primary/10 hover:text-primary transition-colors border border-border">Explain Change Management like I'm 5</button>
+                 <button onClick={() => append({role: 'user', content: "What did he do at DXC?"})} className="text-xs bg-muted px-3 py-1.5 rounded-full hover:bg-primary/10 hover:text-primary transition-colors border border-border">What did he do at DXC?</button>
+                 <button onClick={() => append({role: 'user', content: "Explain Change Management like I'm 5"})} className="text-xs bg-muted px-3 py-1.5 rounded-full hover:bg-primary/10 hover:text-primary transition-colors border border-border">Explain Change Management like I'm 5</button>
                </div>
             </div>
           )}
@@ -90,7 +90,7 @@ export default function AIAssistantPage() {
           <div ref={messagesEndRef} />
         </div>
 
-        <form onSubmit={handleSubmit} className="p-4 border-t border-border bg-background flex gap-2">
+        <form onSubmit={(e) => { e.preventDefault(); if(inputLocal.trim() && !isLoading) { append({role: 'user', content: inputLocal}); setInputLocal(""); } }} className="p-4 border-t border-border bg-background flex gap-2">
           <button 
             type="button" 
             onClick={handleVoice}
@@ -100,11 +100,11 @@ export default function AIAssistantPage() {
           </button>
           <input
             className="flex-1 bg-background border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder:text-muted-foreground"
-            value={input || ""}
+            value={inputLocal}
             placeholder="Type your message..."
-            onChange={handleInputChange}
+            onChange={(e) => setInputLocal(e.target.value)}
           />
-          <button type="submit" disabled={isLoading || !(input || "").trim()} className="bg-primary text-primary-foreground p-3 shrink-0 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50">
+          <button type="submit" disabled={isLoading || !inputLocal.trim()} className="bg-primary text-primary-foreground p-3 shrink-0 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50">
             <Send className="w-5 h-5" />
           </button>
         </form>
