@@ -1,0 +1,12 @@
+{
+  "name": "DXC Technology",
+  "summary": "DXC Technology is an American multinational IT services and consulting company, serving over 6,000 enterprise and public sector clients across 70 countries.",
+  "details": {
+    "headquarters": "Ashburn, Virginia, USA",
+    "founded": "April 3, 2017",
+    "employees": "~125,000 global (43,000+ in India)",
+    "revenue": "US$13.7 billion (2024)",
+    "specialties": ["Large-scale infrastructure services", "Cloud migration", "ITSM", "Application outsourcing", "Digital transformation"]
+  },
+  "nikhilContext": "Kumar works in the Infrastructure Services team supporting global enterprise clients in exactly the environments DXC is known for — stable, SLA-driven, ITIL-aligned operations."
+}

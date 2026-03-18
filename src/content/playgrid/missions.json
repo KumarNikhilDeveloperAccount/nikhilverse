@@ -1,0 +1,20 @@
+[
+  {
+    "id": "mission-1",
+    "title": "Pick the Safe Change",
+    "description": "Help Nikhil decide if a server upgrade is safe to deploy right now. Check the dependencies!",
+    "reward": "Guardian Badge"
+  },
+  {
+    "id": "mission-2",
+    "title": "Incident vs. Request",
+    "description": "Sort the incoming tickets! Is a broken printer an incident or a request? What about asking for new software?",
+    "reward": "Sorter Badge"
+  },
+  {
+    "id": "mission-3",
+    "title": "Unlock the Contact Constellation",
+    "description": "Find all of Nikhil's professional links hidden in the grid to establish communications.",
+    "reward": "Networker Badge"
+  }
+]

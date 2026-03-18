@@ -1,0 +1,22 @@
+{
+  "chapters": [
+    {
+      "title": "Foundational Academics",
+      "period": "2019 - 2022",
+      "description": "Completed a Diploma in Electronics Engineering at Ambedkar Institute of Technology, New Delhi. This early exposure built the foundational logic and systems-thinking required for large-scale IT infrastructure.",
+      "environment": "academic"
+    },
+    {
+      "title": "Entering the Enterprise World",
+      "period": "July 2022",
+      "description": "Joined DXC Technology as an Analyst III in Infrastructure Services, instantly stepping into a massive, SLA-driven global operations environment. Quickly adapted to the rigorous governance of enterprise change management.",
+      "environment": "dxc"
+    },
+    {
+      "title": "Mastering ITSM & Infrastructure",
+      "period": "2023 - Present",
+      "description": "Took deep ownership over end-to-end Incident Management, Change Governance, and technical infrastructure support. Validated RFCs, managed CAB approvals, coordinated VMware migrations, handled SCCM patching, and actively provisioned access using BeyondTrust PAM. Continuously advancing technical breadth with cloud certs (AWS/Oracle) and currently pursuing a B.Tech (WILP) in Computer Science.",
+      "environment": "dxc"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "term": "ITIL",
+    "definition": "IT Infrastructure Library. The globally recognized best-practice framework for ITSM.",
+    "related": ["ITSM", "SLA", "CAB"]
+  },
+  {
+    "term": "ITSM",
+    "definition": "IT Service Management. The discipline of designing, delivering, managing, and improving IT services.",
+    "related": ["Incident", "Change", "Service Request"]
+  },
+  {
+    "term": "Incident",
+    "definition": "An unplanned interruption to an IT service or reduction in the quality of an IT service.",
+    "related": ["Major Incident", "SLA"]
+  },
+  {
+    "term": "Major Incident",
+    "definition": "The highest category of impact for an incident. A major incident results in significant disruption to the business.",
+    "related": ["Incident"]
+  },
+  {
+    "term": "Change",
+    "definition": "The addition, modification, or removal of anything that could have a direct or indirect effect on services.",
+    "related": ["CAB", "eCAB", "PIR"]
+  },
+  {
+    "term": "CAB",
+    "definition": "Change Advisory Board. A group of subject matter experts who review and approve changes.",
+    "related": ["Change", "eCAB"]
+  },
+  {
+    "term": "eCAB",
+    "definition": "Emergency Change Advisory Board. A subgroup of CAB that makes decisions about high-impact emergency changes.",
+    "related": ["CAB", "Change"]
+  },
+  {
+    "term": "SLA",
+    "definition": "Service Level Agreement. A documented agreement between a service provider and a customer that identifies both services required and the expected level of service.",
+    "related": ["OLA", "KPI"]
+  },
+  {
+    "term": "CMDB",
+    "definition": "Configuration Management Database. A database that contains all relevant information about the hardware and software components used in an organization's IT services.",
+    "related": ["CI"]
+  },
+  {
+    "term": "RBAC",
+    "definition": "Role-Based Access Control. A method of regulating access to computer or network resources based on the roles of individual users.",
+    "related": ["UAM", "Active Directory"]
+  },
+  {
+    "term": "PIR",
+    "definition": "Post Implementation Review. An assessment conducted after a change is implemented to determine if it was successful and what improvements can be made.",
+    "related": ["Change"]
+  }
+]

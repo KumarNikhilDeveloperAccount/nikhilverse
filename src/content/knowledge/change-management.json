@@ -1,0 +1,12 @@
+{
+  "title": "Change Management",
+  "summary": "A controlled process to manage all changes to IT services with minimum disruption.",
+  "explanations": {
+    "beginner": "If you want to upgrade a massive computer system, you can't just unplug it. Change Management is the strict planning and permission process to make sure the upgrade doesn't break anything.",
+    "professional": "Change Management (or Change Enablement in ITIL 4) controls lifecycle changes via RFCs. Changes are classified as Standard, Normal, or Emergency. It requires deep impact and risk assessments, CAB/eCAB approvals, testing verifications, and Post Implementation Reviews (PIRs).",
+    "recruiter": "Kumar acts as a gatekeeper in this space. Before any change reaches the Change Advisory Board (CAB), he actively validates the technical scope, dependencies, risk level, and potential production impact, coordinating with security, network, and storage teams."
+  },
+  "related_topics": ["CAB", "eCAB", "PIR", "CMDB"],
+  "tags": ["process", "governance"],
+  "visibility": "public"
+}

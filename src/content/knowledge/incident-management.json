@@ -1,0 +1,12 @@
+{
+  "title": "Incident Management",
+  "summary": "The process to restore normal service operation as quickly as possible and minimize business impact.",
+  "explanations": {
+    "beginner": "When a computer system breaks or stops working, Incident Management is the emergency response. Fix it fast so people can get back to work.",
+    "professional": "Incident Management follows a strict ITIL lifecycle: Identification -> Logging -> Categorization -> Prioritization -> Diagnosis -> Escalation -> Resolution -> Closure. Prioritization is based on Business Impact and Urgency.",
+    "recruiter": "Kumar Nikhil owns end-to-end Incident Management. He regularly handles detection, logging in ServiceNow, prioritization, scaling to specialized teams, and validating resolution while strict SLA and OLA thresholds are monitored."
+  },
+  "related_topics": ["SLA", "Major Incident", "ServiceNow"],
+  "tags": ["process", "operations"],
+  "visibility": "public"
+}

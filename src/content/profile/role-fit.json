@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Change Management Analyst",
+    "match": "High",
+    "reasons": ["Validates risk, scope, and dependencies before CAB/eCAB", "Maintains governance and conducts Post Implementation Reviews (PIR)"]
+  },
+  {
+    "title": "Incident Management Analyst",
+    "match": "High",
+    "reasons": ["Owns end-to-end incident handling including detection, logging, prioritization, coordination, and closure", "Strictly monitors and meets SLA/OLA/KPI definitions"]
+  },
+  {
+    "title": "ITSM Operations Analyst",
+    "match": "High",
+    "reasons": ["Handles multiple ITIL practices within ServiceNow and HPSM", "Delivers KT and transition support for client services"]
+  },
+  {
+    "title": "Infrastructure Services Analyst",
+    "match": "High",
+    "reasons": ["Coordinates Windows Server troubleshooting and VMware vSphere environments", "Manages SCCM patch coordination and Active Directory access provisioning"]
+  }
+]

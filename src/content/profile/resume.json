@@ -1,0 +1,51 @@
+{
+  "summary": "IT Service Management and Infrastructure professional with strong hands-on experience across Change Management, Incident Management, and Service Request operations in large-scale enterprise environments. Proven exposure to technical infrastructure support including Windows server operations, patch management, privileged access management, virtualization, and storage platforms. Experienced in KT delivery, cross-training, client-facing knowledge transfer, and major project transitions, with a strong ITIL-aligned governance and service delivery mindset.",
+  "experience": [
+    {
+      "role": "Analyst III, Infrastructure Services",
+      "company": "DXC Technology",
+      "period": "July 2022 – Present",
+      "bullets": [
+        "End-to-end Incident Management: owns the complete lifecycle — detection (alerts), logging in ServiceNow/HPSM, prioritization based on impact/urgency, escalation to right teams, coordination, resolution tracking, and closure while strictly meeting SLA/OLA. Participates in major incident bridges.",
+        "RFC & Service Request handling: analyses, classifies, and schedules Requests for Change (RFCs) and Service Requests across infrastructure, server, and application domains.",
+        "Change validation & governance: performs detailed validation of scope, technical dependencies, risk level, and production impact before CAB/eCAB. Coordinates with infrastructure, app, network, security, and storage teams.",
+        "Post Implementation Review (PIR): conducts PIRs to confirm success and capture improvement actions.",
+        "Patching expertise: supports MFSA-based patching and SCCM patch coordination to ensure zero or minimal downtime. Troubleshoots Windows Server issues post-patch.",
+        "Active Directory & Access Management: handles RBAC, UAM, group policy requests, and uses BeyondTrust Privileged Access Management (PAM).",
+        "Virtualization & Storage: operates daily with VMware vSphere environments for server validation and supports incident analysis involving NetApp ONTAP systems.",
+        "CMDB: creates, updates, and validates Configuration Items (CIs) and relationships.",
+        "SLA/OLA tracking: monitors performance and prepares operational reports.",
+        "Knowledge Transfer (KT) & Transitions: delivers KT, Shadow KT, and Cross KT sessions to new joiners and client stakeholders. Supports major client project transitions."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech (WILP) in Computer Science & Engineering",
+      "institution": "Mangalayatan University, Aligarh",
+      "period": "2024 – 2027"
+    },
+    {
+      "degree": "Diploma in Electronics Engineering",
+      "institution": "Ambedkar Institute of Technology, New Delhi",
+      "period": "2019 – 2022"
+    }
+  ],
+  "certifications": [
+    "Oracle Certified Foundations Associate",
+    "AWS Certified Cloud Practitioner",
+    "Oracle Cloud Data Management 2023 Certified Foundations Associate",
+    "Business Intelligence Professional Foundations Certification (BIFPC)",
+    "Aviatrix Certified Engineer – Multicloud Network Associate"
+  ],
+  "skills": [
+    "Incident Management", "Change Management", "Service Request Management",
+    "ITIL Framework", "ITSM", "ServiceNow", "HPSM", "Windows Server Administration & Troubleshooting",
+    "Active Directory (RBAC/UAM)", "CAB/eCAB Governance", "MFSA Patching", "SCCM Patch Coordination",
+    "BeyondTrust PAM", "VMware vSphere", "CMDB", "NetApp ONTAP", "SLA/OLA Tracking", "Knowledge Transfer (KT)"
+  ],
+  "languages": [
+    "English - Fluent",
+    "Hindi - Fluent"
+  ]
+}

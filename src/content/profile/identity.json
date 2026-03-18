@@ -1,0 +1,19 @@
+{
+  "fullName": "Kumar Nikhil",
+  "preferredName": "Nikhil",
+  "pronouns": "he/his/him",
+  "location": "Palam, New Delhi, India",
+  "contact": {
+    "email": "nkashyapnikhilnk@gmail.com",
+    "phone": "+91 9315600875",
+    "whatsapp": "9315600875",
+    "instagram": "https://www.instagram.com/nikhil_.kashyap/",
+    "linkedin": "https://www.linkedin.com/in/kumar-nikhil-1000a9192"
+  },
+  "currentRole": {
+    "title": "Analyst III, Infrastructure Services",
+    "company": "DXC Technology",
+    "startDate": "July 2022"
+  },
+  "dob": "June 30, 2003"
+}

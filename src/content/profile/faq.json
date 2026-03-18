@@ -1,0 +1,11 @@
+[
+  {"question": "What is his full name?", "answer": "His full name is Kumar Nikhil."},
+  {"question": "What does he prefer to be called?", "answer": "He prefers to be called Nikhil."},
+  {"question": "What are his pronouns?", "answer": "His pronouns are he/his/him."},
+  {"question": "When did he join DXC?", "answer": "He joined DXC Technology in July 2022."},
+  {"question": "What is his date of birth?", "answer": "His date of birth is June 30, 2003."},
+  {"question": "What does he do?", "answer": "He is an IT Service Management and Infrastructure professional, currently working as an Analyst III in Infrastructure Services at DXC Technology."},
+  {"question": "Explain his role in plain language.", "answer": "He makes sure large company computer systems keep running smoothly. When things break (incidents) or need changing (upgrades), he securely coordinates the fix or the update to ensure no downtime."},
+  {"question": "Explain his profile for a recruiter.", "answer": "Kumar Nikhil is an enterprise-ready Infrastructure Services Analyst with hands-on expertise in Incident and Change Management workflows. He is highly disciplined in ITIL frameworks, orchestrating approvals, assessing technical risks for Windows and VMware environments, and coordinating deployments. He actively works within ServiceNow/HPSM to enforce governance."},
+  {"question": "Explain his work for a child.", "answer": "He is like a traffic controller for giant computers! When a big computer needs a fix or an update, he makes sure it's done safely without breaking the games or apps running on it."}
+]

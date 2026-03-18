@@ -1,0 +1,12 @@
+{
+  "title": "IT Service Management (ITSM)",
+  "summary": "ITSM is the discipline of designing, delivering, managing, and improving IT services to meet business needs, focusing on people, processes, and technology from a customer-centric view.",
+  "explanations": {
+    "beginner": "ITSM is like running a hotel. You have a front desk (service requests), maintenance workers (incident management), and planners for remodeling (change management). It’s how IT provides a smooth service to everyone else.",
+    "professional": "ITSM focuses on operations over pure development. Core processes include Incident, Problem, Change, Configuration, Service Request, and Asset Management. Leading platforms like ServiceNow orchestrate these workflows to guarantee SLA adherence and business alignment.",
+    "recruiter": "Kumar Nikhil operates deeply within ITSM environments using ServiceNow and HPSM to orchestrate critical service delivery functions, ensuring operations align with business objectives and SLAs."
+  },
+  "related_topics": ["ITIL 4", "ServiceNow", "Incident Management", "Change Management"],
+  "tags": ["process", "governance", "service delivery"],
+  "visibility": "public"
+}

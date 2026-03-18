@@ -1,0 +1,35 @@
+{
+  "title": "Infrastructure & Tools",
+  "summary": "The underlying operational technologies that support enterprise service delivery.",
+  "technologies": [
+    {
+      "name": "Windows Server",
+      "context": "Microsoft's enterprise OS. Nikhil handles service failures, performance issues, access problems, and post-patch incidents using Event Viewer and PowerShell."
+    },
+    {
+      "name": "VMware vSphere",
+      "context": "Enterprise virtualization platform. Nikhil uses VMware for server validation during changes, patching coordination, and managing high availability."
+    },
+    {
+      "name": "Active Directory (AD)",
+      "context": "Microsoft directory service for identity management. Nikhil manages user/group access, RBAC, UAM, and group policy requests."
+    },
+    {
+      "name": "BeyondTrust PAM",
+      "context": "Privileged Access Management solution. Nikhil uses it for secure privileged access provisioning and approvals to reduce security risks."
+    },
+    {
+      "name": "SCCM & MFSA Patching",
+      "context": "Microsoft systems for patch management. Nikhil coordinates patch scheduling, deployment, verification, and compliance reporting against Microsoft Security Fix Announcements."
+    },
+    {
+      "name": "NetApp ONTAP",
+      "context": "Enterprise storage OS. Nikhil supports storage-related incident analysis and coordination."
+    },
+    {
+      "name": "ServiceNow & HPSM",
+      "context": "Leading cloud ITSM platforms. Nikhil handles tickets, approvals, CMDB updates, and reporting for global operations."
+    }
+  ],
+  "visibility": "public"
+}
