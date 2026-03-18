@@ -1,6 +1,6 @@
 "use client";
 
-import { Bot, Send, User, Mic } from 'lucide-react';
+import { Bot, Send, User } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 export default function AIAssistantPage() {
@@ -13,45 +13,7 @@ export default function AIAssistantPage() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const [isListening, setIsListening] = useState(false);
 
-  const handleVoice = () => {
-    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-      alert("Voice recognition is not supported in this browser.");
-      return;
-    }
-    // @ts-ignore
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
-    recognition.continuous = false;
-    recognition.interimResults = true;
-
-    recognition.onstart = () => setIsListening(true);
-    recognition.onresult = (event: any) => {
-      let interimTranscript = '';
-      let finalTranscript = '';
-
-      for (let i = event.resultIndex; i < event.results.length; ++i) {
-        if (event.results[i].isFinal) {
-          finalTranscript += event.results[i][0].transcript;
-        } else {
-          interimTranscript += event.results[i][0].transcript;
-        }
-      }
-
-      if (finalTranscript) {
-        setInputLocal(prev => prev + (prev ? " " : "") + finalTranscript);
-      }
-    };
-    recognition.onerror = (event: any) => {
-      setIsListening(false);
-      if (event.error !== 'no-speech') {
-        alert(`Microphone Error: ${event.error}. Please check your browser settings.`);
-      }
-    };
-    recognition.onend = () => setIsListening(false);
-    recognition.start();
-  };
 
   const sendMessage = async (content: string) => {
     if (!content.trim() || isLoading) return;
@@ -150,13 +112,7 @@ export default function AIAssistantPage() {
         </div>
 
         <form onSubmit={(e) => { e.preventDefault(); sendMessage(inputLocal); }} className="p-4 border-t border-border bg-background flex gap-2">
-          <button 
-            type="button" 
-            onClick={handleVoice}
-            className={`p-3 shrink-0 rounded-xl transition-colors border border-border ${isListening ? 'bg-red-500 text-white animate-pulse border-red-500' : 'bg-muted text-foreground hover:bg-accent'}`}
-          >
-            <Mic className="w-5 h-5" />
-          </button>
+
           <input
             className="flex-1 bg-background border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder:text-muted-foreground"
             value={inputLocal}
