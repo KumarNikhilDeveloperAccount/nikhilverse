@@ -31,7 +31,10 @@ export default function AIAssistantPage() {
       const transcript = event.results[0][0].transcript;
       setInputLocal(prev => prev + (prev ? " " : "") + transcript);
     };
-    recognition.onerror = () => setIsListening(false);
+    recognition.onerror = (event: any) => {
+      setIsListening(false);
+      alert(`Microphone Error: ${event.error}. Please ensure you have granted microphone permissions in your browser settings.`);
+    };
     recognition.onend = () => setIsListening(false);
     recognition.start();
   };
