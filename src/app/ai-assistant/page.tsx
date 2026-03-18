@@ -24,16 +24,30 @@ export default function AIAssistantPage() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
-    recognition.interimResults = false;
+    recognition.interimResults = true;
 
     recognition.onstart = () => setIsListening(true);
     recognition.onresult = (event: any) => {
-      const transcript = event.results[0][0].transcript;
-      setInputLocal(prev => prev + (prev ? " " : "") + transcript);
+      let interimTranscript = '';
+      let finalTranscript = '';
+
+      for (let i = event.resultIndex; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) {
+          finalTranscript += event.results[i][0].transcript;
+        } else {
+          interimTranscript += event.results[i][0].transcript;
+        }
+      }
+
+      if (finalTranscript) {
+        setInputLocal(prev => prev + (prev ? " " : "") + finalTranscript);
+      }
     };
     recognition.onerror = (event: any) => {
       setIsListening(false);
-      alert(`Microphone Error: ${event.error}. Please ensure you have granted microphone permissions in your browser settings.`);
+      if (event.error !== 'no-speech') {
+        alert(`Microphone Error: ${event.error}. Please check your browser settings.`);
+      }
     };
     recognition.onend = () => setIsListening(false);
     recognition.start();
@@ -55,7 +69,8 @@ export default function AIAssistantPage() {
       });
 
       if (!response.ok) {
-        setMessages(prev => [...prev, { id: Date.now().toString(), role: "assistant", content: "Error connecting to AI (Check API Keys in .env file or Vercel)." }]);
+        const errorText = await response.text().catch(() => "Unknown Context Error");
+        setMessages(prev => [...prev, { id: Date.now().toString(), role: "assistant", content: `Error: ${errorText}` }]);
         setIsLoading(false);
         return;
       }
