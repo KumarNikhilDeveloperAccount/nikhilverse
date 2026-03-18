@@ -1,0 +1,22 @@
+
+> nikhilverse@0.1.0 build
+> next build
+
+▲ Next.js 16.1.7 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.8s
+  Running TypeScript ...
+Failed to compile.
+
+./src/app/playgrid/missions/page.tsx:21:24
+Type error: Property 'difficulty' does not exist on type '{ id: string; title: string; description: string; reward: string; }'.
+
+[0m [90m 19 |[39m             {[90m/* Status indicator */[39m}
+ [90m 20 |[39m             [33m<[39m[33mdiv[39m className[33m=[39m[32m"absolute top-0 right-0 bg-primary text-primary-foreground text-xs font-bold px-4 py-2 rounded-bl-xl shadow-sm"[39m[33m>[39m
+[31m[1m>[22m[39m[90m 21 |[39m               [33mLevel[39m {m[33m.[39mdifficulty}
+ [90m    |[39m                        [31m[1m^[22m[39m
+ [90m 22 |[39m             [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 23 |[39m
+ [90m 24 |[39m             [33m<[39m[33mdiv[39m className[33m=[39m[32m"w-24 h-24 bg-muted rounded-full flex items-center justify-center shrink-0 border-4 border-background shadow-inner"[39m[33m>[39m[0m
+Next.js build worker exited with code: 1 and signal: null
