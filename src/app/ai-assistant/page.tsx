@@ -100,11 +100,11 @@ export default function AIAssistantPage() {
           </button>
           <input
             className="flex-1 bg-background border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder:text-muted-foreground"
-            value={input}
+            value={input || ""}
             placeholder="Type your message..."
             onChange={handleInputChange}
           />
-          <button type="submit" disabled={isLoading || !input.trim()} className="bg-primary text-primary-foreground p-3 shrink-0 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50">
+          <button type="submit" disabled={isLoading || !(input || "").trim()} className="bg-primary text-primary-foreground p-3 shrink-0 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50">
             <Send className="w-5 h-5" />
           </button>
         </form>
