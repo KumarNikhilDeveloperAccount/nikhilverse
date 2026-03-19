@@ -1,19 +1,39 @@
 "use client";
 
-import { Bot, Send, User } from 'lucide-react';
+import { Bot, Send, User, Volume2, StopCircle } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 export default function AIAssistantPage() {
   const [messages, setMessages] = useState<any[]>([]);
   const [inputLocal, setInputLocal] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isPlayingId, setIsPlayingId] = useState<string | null>(null);
+  
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, isLoading]);
 
+  // Handle Voice TTS
+  const speakText = (text: string, id: string) => {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel(); 
+    
+    let cleanText = text.replace(/#/g, '').replace(/\*/g, '').replace(/_/g, '').replace(/-/g, ' ');
+    
+    const msg = new SpeechSynthesisUtterance(cleanText);
+    msg.onend = () => setIsPlayingId(null);
+    setIsPlayingId(id);
+    window.speechSynthesis.speak(msg);
+  };
 
+  const stopSpeaking = () => {
+    if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+        setIsPlayingId(null);
+    }
+  };
 
   const sendMessage = async (content: string) => {
     if (!content.trim() || isLoading) return;
@@ -72,8 +92,8 @@ export default function AIAssistantPage() {
         <p className="text-muted-foreground">Ask anything about Kumar Nikhil's experience, skills, or IT infrastructure.</p>
       </div>
 
-      <div className="flex-1 bg-card border border-border rounded-2xl shadow-sm flex flex-col overflow-hidden">
-        <div className="flex-1 overflow-y-auto p-4 space-y-6">
+      <div className="flex-1 bg-card border border-border rounded-2xl shadow-sm flex flex-col overflow-hidden relative">
+        <div className="flex-1 overflow-y-auto p-4 space-y-6 pb-20">
           {messages.length === 0 && (
             <div className="h-full flex flex-col items-center justify-center text-muted-foreground p-8 text-center space-y-4">
                <Bot className="w-16 h-16 opacity-20" />
@@ -93,8 +113,21 @@ export default function AIAssistantPage() {
                 </div>
                 <span className="text-xs font-semibold text-muted-foreground uppercase">{m.role}</span>
               </div>
-              <div className={`px-5 py-3 rounded-2xl ${m.role === 'user' ? 'bg-primary text-primary-foreground rounded-tr-none' : 'bg-muted text-foreground border border-border rounded-tl-none'}`}>
+              <div className={`relative px-5 py-3 rounded-2xl ${m.role === 'user' ? 'bg-primary text-primary-foreground rounded-tr-none' : 'bg-muted text-foreground border border-border rounded-tl-none pb-10'}`}>
                 {m.content}
+                {m.role === 'assistant' && m.content.length > 5 && (
+                    <div className="absolute bottom-2 right-2">
+                        {isPlayingId === m.id ? (
+                            <button onClick={stopSpeaking} className="text-red-500 hover:text-red-600 flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide bg-red-500/10 px-2 py-1 rounded-sm border border-red-500/20">
+                                <StopCircle className="w-3 h-3"/> Stop
+                            </button>
+                        ) : (
+                            <button onClick={() => speakText(m.content, m.id)} className="text-muted-foreground hover:text-primary flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide bg-background px-2 py-1 rounded-sm border border-border">
+                                <Volume2 className="w-3 h-3"/> Read Aloud
+                            </button>
+                        )}
+                    </div>
+                )}
               </div>
             </div>
           ))}
@@ -111,8 +144,7 @@ export default function AIAssistantPage() {
           <div ref={messagesEndRef} />
         </div>
 
-        <form onSubmit={(e) => { e.preventDefault(); sendMessage(inputLocal); }} className="p-4 border-t border-border bg-background flex gap-2">
-
+        <form onSubmit={(e) => { e.preventDefault(); sendMessage(inputLocal); }} className="absolute bottom-0 w-full p-4 border-t border-border bg-background flex gap-2">
           <input
             className="flex-1 bg-background border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder:text-muted-foreground"
             value={inputLocal}

@@ -127,11 +127,18 @@ export default function KnowledgeMapPage() {
                 </h4>
                 {activeConnections.length > 0 ? (
                   <div className="flex flex-wrap gap-2 mb-8">
-                    {activeConnections.map(conn => (
-                       <span key={conn} className="bg-background border-2 border-border px-3 py-1.5 rounded-xl text-sm font-semibold shadow-sm">
-                          {conn}
-                       </span>
-                    ))}
+                    {activeConnections.map(conn => {
+                       const linkedNode = nodes.find(n => n.label === conn);
+                       return (
+                         <button 
+                           key={conn} 
+                           onClick={() => { if (linkedNode) setActiveNode(linkedNode.id); }}
+                           className="bg-background border-2 border-border px-3 py-1.5 rounded-xl text-sm font-semibold shadow-sm hover:border-primary hover:text-primary transition-colors cursor-pointer"
+                         >
+                            {conn}
+                         </button>
+                       );
+                    })}
                   </div>
                 ) : (
                   <p className="text-muted-foreground text-sm mb-8 font-medium">Standalone concept.</p>

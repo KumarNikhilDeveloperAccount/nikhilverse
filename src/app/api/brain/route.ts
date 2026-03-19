@@ -34,15 +34,27 @@ ${JSON.stringify(playbooks)}
 
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
-    // Format history for Gemini
-    const chatHistory = messages.slice(0, -1).map((msg: any) => ({
-      role: msg.role === 'user' ? 'user' : 'model',
-      parts: [{ text: msg.content }]
-    }));
+    // Format history for Gemini strictly requiring User First and Alternating Roles
+    const history = [];
+    let expectedRole = 'user';
+    for (const m of messages.slice(0, -1)) {
+        if (!m.content || m.content.trim() === '') continue;
+        const role = m.role === 'model' || m.role === 'assistant' ? 'model' : 'user';
+        if (role !== expectedRole) {
+            if (expectedRole === 'model') history.push({ role: 'model', parts: [{ text: "Acknowledged." }] });
+            else history.push({ role: 'user', parts: [{ text: "System Start." }] });
+        }
+        history.push({ role, parts: [{ text: m.content }] });
+        expectedRole = role === 'user' ? 'model' : 'user';
+    }
+
+    if (history.length > 0 && history[history.length - 1].role === 'user') {
+        history.pop();
+    }
 
     const chat = model.startChat({
       systemInstruction: { role: 'system', parts: [{ text: systemInstruction }] },
-      history: chatHistory
+      history: history
     });
 
     const lastMessage = messages[messages.length - 1].content;
