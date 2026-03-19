@@ -28,6 +28,17 @@ export default function NikhilsBrainPage() {
 
   useEffect(() => {
     scrollToBottom();
+    
+    // Auto-deep-dive from Knowledge Map
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get('q');
+    if (query) {
+       window.history.replaceState({}, '', '/nikhils-brain');
+       // Delay execution slightly to ensure component has fully mounted states
+       setTimeout(() => {
+           sendMessage(`Provide a comprehensive deep dive into ${query}. Explain its core concepts, why it matters, and how it connects to ITSM or Infrastructure Operations.`);
+       }, 500);
+    }
   }, [messages, isLoading]);
 
   // Handle Voice TTS

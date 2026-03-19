@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { getKnowledgeMap } from '@/lib/data';
 import { Network, X, Search, Activity, Server, Shield, Database, Wrench } from 'lucide-react';
+import Link from 'next/link';
 
 export default function KnowledgeMapPage() {
   const mapData = getKnowledgeMap();
@@ -145,7 +146,12 @@ export default function KnowledgeMapPage() {
                 )}
 
                 <div className="mt-auto pt-8 border-t border-border">
-                    <p className="text-sm font-bold text-muted-foreground text-center">Open Ask Nikhil's Brain and type '{activeNodeData.label}' for a deep dive.</p>
+                    <Link 
+                       href={`/nikhils-brain?q=${encodeURIComponent(activeNodeData.label)}`}
+                       className="flex items-center justify-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 px-4 py-3 rounded-xl transition-all font-bold shadow-sm cursor-pointer"
+                    >
+                        <Network className="w-5 h-5"/> Deep Dive in Ask Nikhil's Brain
+                    </Link>
                 </div>
              </div>
           ) : (
