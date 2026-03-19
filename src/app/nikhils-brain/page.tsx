@@ -89,16 +89,12 @@ export default function NikhilsBrainPage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/brain', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages, modeId: activeMode.id }),
-      });
-
-      if (!response.ok) throw new Error('Failed to fetch response');
-      if (!response.body) throw new Error('No body returned from API');
-
-      const reader = response.body.getReader();
+      if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || `Server Error ${response.status}`);
+      }
+      
+      const reader = response.body?.getReader();
       const decoder = new TextDecoder();
       let done = false;
       let aiResponse = '';

@@ -36,7 +36,7 @@ ${JSON.stringify(playbooks)}
     `.trim();
 
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-2.5-flash",
+      model: "models/gemini-2.0-flash", 
       systemInstruction: systemInstruction 
     });
 
@@ -80,7 +80,7 @@ ${JSON.stringify(playbooks)}
       });
 
     return new Response(stream, {
-        headers: { 'Content-Type': 'text/plain' }
+        headers: { 'Content-Type': 'text/plain; charset=utf-8' }
     });
 
   } catch (error: any) {
