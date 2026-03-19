@@ -32,7 +32,10 @@ ${JSON.stringify(playbooks)}
 6. Keep your responses highly professional, simulating an enterprise communication format.
     `.trim();
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const model = genAI.getGenerativeModel({ 
+      model: "gemini-2.5-flash",
+      systemInstruction: systemInstruction 
+    });
 
     // Format history for Gemini strictly requiring User First and Alternating Roles
     const history = [];
@@ -53,7 +56,6 @@ ${JSON.stringify(playbooks)}
     }
 
     const chat = model.startChat({
-      systemInstruction: { role: 'system', parts: [{ text: systemInstruction }] },
       history: history
     });
 

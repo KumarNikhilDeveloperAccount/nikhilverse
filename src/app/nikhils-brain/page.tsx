@@ -28,8 +28,10 @@ export default function NikhilsBrainPage() {
 
   useEffect(() => {
     scrollToBottom();
-    
-    // Auto-deep-dive from Knowledge Map
+  }, [messages, isLoading]);
+
+  useEffect(() => {
+    // Auto-deep-dive from Knowledge Map (only on mount)
     const params = new URLSearchParams(window.location.search);
     const query = params.get('q');
     if (query) {
@@ -39,7 +41,7 @@ export default function NikhilsBrainPage() {
            sendMessage(`Provide a comprehensive deep dive into ${query}. Explain its core concepts, why it matters, and how it connects to ITSM or Infrastructure Operations.`);
        }, 500);
     }
-  }, [messages, isLoading]);
+  }, []); // Run ONLY once on mount
 
   // Handle Voice TTS
   const speakText = (text: string, index: number) => {
