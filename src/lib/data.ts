@@ -37,3 +37,12 @@ export const getGlossary = () => glossaryData;
 // Playgrid Exports
 export const getMissions = () => missionsData;
 export const getQuizQuestions = () => quizData;
+
+// AI Brain Exports
+import { playbooks } from '@/content/knowledge/playbooks';
+import { brainModes } from '@/content/knowledge/brain-modes';
+import { knowledgeMapData } from '@/content/knowledge/knowledge-map';
+
+export const getPlaybooks = () => playbooks;
+export const getBrainModes = () => brainModes;
+export const getKnowledgeMap = () => knowledgeMapData;

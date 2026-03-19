@@ -15,6 +15,8 @@ const links = [
   { href: "/knowledge", label: "Knowledge" },
   { href: "/contact", label: "Contact" },
   { href: "/ai-assistant", label: "AI" },
+  { href: "/nikhils-brain", label: "Brain🧠" },
+  { href: "/knowledge-map", label: "Map🗺️" },
 ];
 
 export function Navigation() {
