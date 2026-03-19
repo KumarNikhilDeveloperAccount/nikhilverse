@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getMissions } from '@/lib/data';
 import { ShieldCheck, Trophy, Lock } from 'lucide-react';
 
@@ -30,9 +31,9 @@ export default function MissionsPage() {
               <p className="text-muted-foreground mb-4">{m.description}</p>
               
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
-                 <button className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold hover:opacity-90 transition-opacity">
+                 <Link href="/playgrid/quiz" className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold hover:opacity-90 transition-opacity">
                    Start Mission
-                 </button>
+                 </Link>
                  <span className="text-sm font-semibold text-primary flex items-center gap-1">
                    Reward: {m.reward}
                  </span>

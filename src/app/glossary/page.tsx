@@ -1,8 +1,20 @@
+"use client";
+
 import { getGlossary } from '@/lib/data';
 import { Search } from 'lucide-react';
+import { useState } from 'react';
 
 export default function GlossaryPage() {
-  const glossary = getGlossary().sort((a,b) => a.term.localeCompare(b.term));
+  const [search, setSearch] = useState("");
+  const allGlossary = getGlossary().sort((a,b) => a.term.localeCompare(b.term));
+  
+  const glossary = search.trim() === "" 
+    ? allGlossary 
+    : allGlossary.filter(g => 
+        g.term.toLowerCase().includes(search.toLowerCase()) || 
+        g.definition.toLowerCase().includes(search.toLowerCase()) ||
+        g.related.some(r => r.toLowerCase().includes(search.toLowerCase()))
+      );
 
   return (
     <div className="container max-w-4xl mx-auto py-12 px-4 animate-in fade-in duration-700">
@@ -15,11 +27,18 @@ export default function GlossaryPage() {
         <Search className="absolute left-3 top-3.5 h-5 w-5 text-muted-foreground" />
         <input 
           type="text" 
-          placeholder="Search glossary... (Static demo, use browser search)" 
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search glossary terms or definitions..." 
           className="w-full bg-card border border-border pl-10 pr-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground placeholder:text-muted-foreground"
-          readOnly
         />
       </div>
+
+      {glossary.length === 0 && (
+        <div className="text-center text-muted-foreground py-12">
+          No terms found for "{search}".
+        </div>
+      )}
 
       <div className="space-y-4">
         {glossary.map((entry) => (

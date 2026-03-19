@@ -13,6 +13,7 @@ import infraData from '@/content/knowledge/infrastructure.json';
 import dxcData from '@/content/companies/dxc.json';
 import glossaryData from '@/content/glossary/glossary.json';
 import missionsData from '@/content/playgrid/missions.json';
+import quizData from '@/content/knowledge/quiz.json';
 
 // Profile Exports
 export const getIdentity = () => identityData;
@@ -35,3 +36,4 @@ export const getGlossary = () => glossaryData;
 
 // Playgrid Exports
 export const getMissions = () => missionsData;
+export const getQuizQuestions = () => quizData;

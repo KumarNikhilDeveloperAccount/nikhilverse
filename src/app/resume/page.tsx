@@ -12,7 +12,7 @@ export default function ResumePage() {
           <h1 className="text-4xl font-bold tracking-tight mb-2">Interactive Resume</h1>
           <p className="text-muted-foreground">Structured view of my professional background.</p>
         </div>
-        <a href="#" className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-medium hover:opacity-90 transition-opacity">
+        <a href="/Kumar_Nikhil_Resume.pdf" download="Kumar_Nikhil_Resume.pdf" className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-medium hover:opacity-90 transition-opacity">
           <Download className="w-4 h-4" />
           Download PDF
         </a>
