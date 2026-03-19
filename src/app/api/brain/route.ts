@@ -3,6 +3,9 @@ import { getPlaybooks, getBrainModes, getBio, getResume } from '@/lib/data';
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY || '');
 
+export const maxDuration = 30; 
+
+
 export async function POST(req: Request) {
   try {
     const { messages, modeId } = await req.json();
@@ -42,10 +45,10 @@ ${JSON.stringify(playbooks)}
     let expectedRole = 'user';
     for (const m of messages.slice(0, -1)) {
         if (!m.content || m.content.trim() === '') continue;
-        const role = m.role === 'model' || m.role === 'assistant' ? 'model' : 'user';
+        const role = m.role === 'assistant' || m.role === 'model' ? 'model' : 'user';
         if (role !== expectedRole) {
             if (expectedRole === 'model') history.push({ role: 'model', parts: [{ text: "Acknowledged." }] });
-            else history.push({ role: 'user', parts: [{ text: "System Start." }] });
+            else history.push({ role: 'user', parts: [{ text: "Continue." }] });
         }
         history.push({ role, parts: [{ text: m.content }] });
         expectedRole = role === 'user' ? 'model' : 'user';
