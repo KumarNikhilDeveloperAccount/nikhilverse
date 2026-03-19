@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
 
     const model = genAI.getGenerativeModel({ 
-      model: "models/gemini-2.0-flash", 
+      model: "models/gemini-flash-latest", 
       systemInstruction: SYSTEM_PROMPT 
     });
 

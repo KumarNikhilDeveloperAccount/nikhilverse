@@ -36,7 +36,7 @@ ${JSON.stringify(playbooks)}
     `.trim();
 
     const model = genAI.getGenerativeModel({ 
-      model: "models/gemini-2.0-flash", 
+      model: "models/gemini-flash-latest", 
       systemInstruction: systemInstruction 
     });
 
