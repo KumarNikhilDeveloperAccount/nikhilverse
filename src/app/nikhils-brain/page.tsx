@@ -101,6 +101,8 @@ export default function NikhilsBrainPage() {
       }
       
       const reader = response.body?.getReader();
+      if (!reader) throw new Error('Could not establish data stream.');
+      
       const decoder = new TextDecoder();
       let done = false;
       let aiResponse = '';
