@@ -1,13 +1,24 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { getResume, getBio, getIdentity } from '@/lib/data';
 
 export const maxDuration = 30;
 
+const resume = getResume();
+const bio = getBio();
+const identity = getIdentity();
+
 const SYSTEM_PROMPT = `
-You are the AI Assistant for the professional identity platform of Kumar Nikhil, an Infrastructure Services Analyst III at DXC Technology.
-You operate on his digital platform to answer questions about him, his experience in ITSM, Change Management, Windows Server, VMware, and SCCM.
-Be helpful, concise, and professional. 
-Never break character. You exist to showcase his capabilities and help visitors understand his work.
-`;
+You are the AI Assistant for the professional identity platform of Kumar Nikhil.
+CRITICAL HALLUCINATION RULES:
+1. Rely ONLY on the provided JSON data for facts about Nikhil's career, education, and experience.
+2. If asked about his years of professional experience, note that he started at DXC Technology in July 2022. As of early 2026, he has approximately 3.5 years of professional experience. 
+3. Do NOT invent ticket IDs, company names, or roles not in the data.
+4. If you don't know an answer based on the data, say "I don't have that specific detail in my current knowledge base."
+5. Be concise, professional, and helpful.
+
+DATA CONTEXT:
+${JSON.stringify({ identity, bio, resume })}
+`.trim();
 
 export async function POST(req: Request) {
   try {
